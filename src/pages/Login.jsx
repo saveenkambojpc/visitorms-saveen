@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import { Link, Redirect } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../misc/firebaseConfig";
 
@@ -7,7 +7,8 @@ export default function Login() {
   const [data, setData] = useState({});
   const auth = getAuth(app);
   // const auth = getAuth();
-
+  
+  const navigate = useNavigate()
 
   const handleInput = (event) => {
     let newInput = {
@@ -23,21 +24,19 @@ export default function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // window.location = "/"
-        
-        // ...
+
+        sessionStorage.setItem("auth", JSON.stringify(user));
+        return navigate("/create_visit")
       })
       .catch((error) => {
         const errorCode = error.code;
-        alert(error.message)
+        alert(error.message);
         const errorMessage = error.message;
       });
   };
-  // const handleSubmit =() => {
-
-  // }
+ 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
+    <section className="bg-gray-50 dark:bg-gray-900 flex h-screen items-center justify-center">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
@@ -92,7 +91,6 @@ export default function Login() {
               </div>
 
               <button
-                
                 onClick={handleSubmit}
                 className="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
               >

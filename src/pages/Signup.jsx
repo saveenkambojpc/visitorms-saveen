@@ -18,7 +18,6 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data.email, data.password);
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         // window.location = '/login'
@@ -32,7 +31,7 @@ export default function Signup() {
  
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900  ">
+    <section className="bg-gray-50 dark:bg-gray-900 flex h-screen items-center justify-center ">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"

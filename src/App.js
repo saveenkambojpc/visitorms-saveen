@@ -15,6 +15,7 @@ export default function App() {
       <Route index element={<Authentication />} />
 
       <Route path="create_visit" element={<PrivateRoute>This is Create Visit</PrivateRoute>} />
+      <Route path="display_visitor" element={<PrivateRoute>This is Display  </PrivateRoute>} />
 
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />

@@ -6,18 +6,17 @@ import Sidebar from "./Sidebar";
 
 export default function PrivateRoute({ children }) {
   //   const auth = useAuth();
-  const auth = true;
-
-  //   const sidebarState = useSelector((store) => store.sidebar);
+  const auth = JSON.parse(sessionStorage.getItem("auth"));
 
   if (!auth) {
-    return <Navigate to="/unauth" />;
+    return <Navigate to="/login" />;
   }
 
-  return <>
-  <div>
-    This is private router
-    {children}
-  </div>
-  </>;
+  return (
+    <>
+      <div>
+        <Sidebar>{children}</Sidebar>
+      </div>
+    </>
+  );
 }
